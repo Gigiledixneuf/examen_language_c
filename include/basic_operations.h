@@ -1,0 +1,1 @@
+//implementer le prototype de chaque fonction
