@@ -1,6 +1,6 @@
 # CLI scientific calculator 
 ** Ce projet porte sur la réalisation d'une calcultrice scientifique en ligne de commande écrit en langage c dans le cadre de l'examen du cours de langage C  
-Cette calculatrice scientifique aux utilisateur la possibilité d'effectuer les calculs scientifiques allant des opérations mathematiques de base aux fonctions avancées **
+Cette calculatrice scientifique offre aux utilisateur la possibilité d'effectuer les calculs scientifiques allant des opérations mathematiques de base aux fonctions avancées **
 
 
  ## Guide d'installation
