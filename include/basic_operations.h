@@ -30,7 +30,9 @@
  *
  * Additionne deux nombres.
  *
- * Cette fonction est réservée à l'implémentation de Benel
+ * double addition(double a, double b);
+
+Cette fonction est réservée à l'implémentation de Benel
  * et Isaac.
  */
 double additionner(double a, double b);

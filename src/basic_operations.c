@@ -4,8 +4,16 @@
 //implementer les fonctions ici
 
 //addition: prend en parametre deux nombre et les additionne
+double additionner(double a, double b)
+{
+    return a + b;
+}
 
 //soustraction: prend en parametre deux nombre et les soustrait
+double soustraire(double a, double b)
+{
+    return a - b;
+}
 
 //multipication: prend en parametre deux nombre et les multiplie
 /*
