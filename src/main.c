@@ -1,5 +1,6 @@
 #include "../include/interface.h"
 #include <stdio.h>
+#include <windows.h>
 
 
 
@@ -11,7 +12,9 @@
 
 int main()
 {
-    showMenu();
+    showTitle();
+    Sleep(2500);
+    handleUserKeywordInput();
     return 0;
 }
 
