@@ -1,37 +1,58 @@
 #include "../include/basic_operations.h"
-//guerchom  & benel & isaac: module: basic operations
-//implementer les fonctions ici
+#include <stddef.h>
 
-//addition: prend en parametre deux nombre et les additionne
-
-//soustraction: prend en parametre deux nombre et les soustrait
-
-//multipication: prend en parametre deux nombre et les multiplie
-double multiplier(double a, double b){
-    return a*b;
-}
-
-// division : prend en parametre deux nombre et les divise en faisant attention à ce que le deuxieme nombre sois different de zero, si c'est le cas lever une exception
-/*
- * Divise deux nombres.
- *
- * Retourne 1 si la division est possible.
- * Retourne 0 si le diviseur est nul.
- *
- * Le résultat est stocké dans resultat.
- */
-int diviser(double a, double b, double *resultat)
+bool add(double a, double b, double *result)
 {
-    if (b == 0)
+    if (result == NULL)
     {
-        return 0;
+        return false;
     }
 
-    *resultat = a / b;
+    *result = a + b;
 
-    return 1;
+    return true;
 }
 
-//test des chaque fonction individuellement en ligne de commande
 
-//total: 4 fonctions
+bool subtract(double a, double b, double *result)
+{
+    if (result == NULL)
+    {
+        return false;
+    }
+
+    *result = a - b;
+
+    return true;
+}
+
+
+bool multiply(double a, double b, double *result)
+{
+    if (result == NULL)
+    {
+        return false;
+    }
+
+    *result = a * b;
+
+    return true;
+}
+
+
+bool divide(double a, double b, double *result)
+{
+    if (result == NULL)
+    {
+        return false;
+    }
+
+    if (b == 0.0)
+    {
+        return false;
+    }
+
+    *result = a / b;
+
+    return true;
+}

@@ -4,8 +4,9 @@ Cette calculatrice scientifique offre aux utilisateur la possibilité d'effectue
 
 
  ## Guide d'installation
- - installation du  le compilateur gcc
+ - installation du compilateur gcc
  - cloner le repo
+ - installer make
  ### compiler le programme
 
  #### sans make:
@@ -17,6 +18,32 @@ Cette calculatrice scientifique offre aux utilisateur la possibilité d'effectue
 
 ```
 ## Structures des dossiers
+examen_language_c/
+│
+├── include/
+│   ├── calculator.h
+│   ├── basic_operations.h
+│   ├── advanced_operations.h
+│   ├── base_conversion.h
+│   ├── history.h
+│   └── interface.h
+│
+├── src/
+│   ├── main.c
+│   ├── calculator.c
+│   ├── basic_operations.c
+│   ├── advanced_operations.c
+│   ├── base_conversion.c
+│   ├── history.c
+│   └── interface.c
+│
+├── tests/
+│   ├── advanced_operations.test.c
+│   ├── basic_operations.test.c
+│
+└── data/
+    └── history.txt
+  
  ## Usages
  ## Test des modules
  Les projet est subdivisé en trois modules.

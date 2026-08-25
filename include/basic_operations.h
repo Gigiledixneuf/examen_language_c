@@ -1,30 +1,30 @@
-//implementer le prototype de chaque fonction
-#ifndef BASIC_OPERATIONS_H
-#define BASIC_OPERATIONS_H
+#ifndef OPERATIONS_H
+#define OPERATIONS_H
 
-/*
- * Additionne deux nombres.
- */
-double additionner(double a, double b);
+#include <stdbool.h>
 
-/*
- * Soustrait le deuxième nombre du premier.
- */
-double soustraire(double a, double b);
+bool add(
+    double a,
+    double b,
+    double *result
+);
 
-/*
- * Multiplie deux nombres.
- */
-double multiplier(double a, double b);
+bool subtract(
+    double a,
+    double b,
+    double *result
+);
 
-/*
- * Divise a par b.
- *
- * Retourne 1 si la division est réussie.
- * Retourne 0 si b est égal à zéro.
- *
- * Le résultat est stocké dans resultat.
- */
-int diviser(double a, double b, double *resultat);
+bool multiply(
+    double a,
+    double b,
+    double *result
+);
+
+bool divide(
+    double a,
+    double b,
+    double *result
+);
 
 #endif

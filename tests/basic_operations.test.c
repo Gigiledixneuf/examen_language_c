@@ -1,84 +1,107 @@
 #include <stdio.h>
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+
 #include "../include/basic_operations.h"
+
+
+#define EPSILON 1e-9
+
+
+bool nearlyEqual(double a, double b)
+{
+    return fabs(a - b) < EPSILON;
+}
+
+
+void test_add(void)
+{
+    double result;
+
+    bool success = add(10.0, 5.0, &result);
+
+    assert(success);
+    assert(nearlyEqual(result, 15.0));
+
+    printf("[PASS] add()\n");
+}
+
+
+void test_subtract(void)
+{
+    double result;
+
+    bool success = subtract(10.0, 5.0, &result);
+
+    assert(success);
+    assert(nearlyEqual(result, 5.0));
+
+    printf("[PASS] subtract()\n");
+}
+
+
+void test_multiply(void)
+{
+    double result;
+
+    bool success = multiply(10.0, 5.0, &result);
+
+    assert(success);
+    assert(nearlyEqual(result, 50.0));
+
+    printf("[PASS] multiply()\n");
+}
+
+
+void test_divide(void)
+{
+    double result;
+
+    bool success = divide(10.0, 5.0, &result);
+
+    assert(success);
+    assert(nearlyEqual(result, 2.0));
+
+    printf("[PASS] divide()\n");
+}
+
+
+void test_divide_by_zero(void)
+{
+    double result;
+
+    bool success = divide(10.0, 0.0, &result);
+
+    assert(!success);
+
+    printf("[PASS] divide() - division par zero\n");
+}
+
+
+void test_null_result(void)
+{
+    assert(!add(2.0, 3.0, NULL));
+    assert(!subtract(2.0, 3.0, NULL));
+    assert(!multiply(2.0, 3.0, NULL));
+    assert(!divide(2.0, 3.0, NULL));
+
+    printf("[PASS] protection contre NULL\n");
+}
+
 
 int main(void)
 {
-    double resultat;
+    printf("=== TESTS DES OPERATIONS DE BASE ===\n\n");
 
-    printf("============================================\n");
-    printf(" TEST MODULE MULTIPLICATION / DIVISION\n");
-    printf("============================================\n\n");
+    test_add();
+    test_subtract();
+    test_multiply();
+    test_divide();
+    test_divide_by_zero();
+    test_null_result();
 
-    /* ============================= */
-    /* TESTS MULTIPLICATION           */
-    /* ============================= */
-
-    printf("===== TESTS MULTIPLICATION =====\n\n");
-
-    printf("5 * 4 = %.2f\n", multiplier(5, 4));
-
-    printf("-5 * 4 = %.2f\n", multiplier(-5, 4));
-
-    printf("5 * -4 = %.2f\n", multiplier(5, -4));
-
-    printf("-5 * -4 = %.2f\n", multiplier(-5, -4));
-
-    printf("2.5 * 4 = %.2f\n", multiplier(2.5, 4));
-
-    printf("0 * 100 = %.2f\n", multiplier(0, 100));
-
-
-    /* ============================= */
-    /* TESTS DIVISION                */
-    /* ============================= */
-
-    printf("\n===== TESTS DIVISION =====\n\n");
-
-    if (diviser(20, 4, &resultat))
-    {
-        printf("20 / 4 = %.2f\n", resultat);
-    }
-
-    if (diviser(-20, 4, &resultat))
-    {
-        printf("-20 / 4 = %.2f\n", resultat);
-    }
-
-    if (diviser(20, -4, &resultat))
-    {
-        printf("20 / -4 = %.2f\n", resultat);
-    }
-
-    if (diviser(-20, -4, &resultat))
-    {
-        printf("-20 / -4 = %.2f\n", resultat);
-    }
-
-    if (diviser(5, 2, &resultat))
-    {
-        printf("5 / 2 = %.2f\n", resultat);
-    }
-
-    if (diviser(0, 5, &resultat))
-    {
-        printf("0 / 5 = %.2f\n", resultat);
-    }
-
-
-    /* ============================= */
-    /* DIVISION PAR ZERO             */
-    /* ============================= */
-
-    printf("\n===== CAS D'ERREUR =====\n\n");
-
-    if (diviser(20, 0, &resultat))
-    {
-        printf("20 / 0 = %.2f\n", resultat);
-    }
-    else
-    {
-        printf("20 / 0 -> ERREUR : division par zero impossible.\n");
-    }
+    printf("\n=== TOUS LES TESTS SONT PASSES ===\n");
 
     return 0;
 }
