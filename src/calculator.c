@@ -246,7 +246,11 @@ static bool executeUnaryOperation(
     double value;
     double result;
 
-    value = askValue();
+    if(context->isInitialExecution){
+        value = askValue();
+    }else{
+        value=context->result;
+    }
 
     bool success = false;
 
@@ -430,9 +434,13 @@ static bool executePower(
     double base;
     double exponent;
     double result;
-
-    printf("Entrez la base : ");
+    if(context->isInitialExecution){
+        printf("Entrez la base : ");
     scanf("%lf", &base);
+    }else{
+        base=context->result;
+    }
+    
 
     printf("Entrez l'exposant : ");
     scanf("%lf", &exponent);
@@ -472,9 +480,16 @@ static bool executeLogBase(
     double base;
     double result;
 
+
     printf("Entrez la valeur : ");
     scanf("%lf", &value);
 
+    if(context->isInitialExecution){
+        printf("Entrez la valeur : ");
+    scanf("%lf", &value);
+    }else{
+        value=context->result;
+    }
     printf("Entrez la base : ");
     scanf("%lf", &base);
 
