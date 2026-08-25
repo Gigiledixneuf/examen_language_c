@@ -6,14 +6,65 @@ int main(void)
     double resultat;
 
     printf("============================================\n");
-    printf(" TEST MODULE MULTIPLICATION / DIVISION\n");
+    printf(" TEST MODULE OPERATIONS DE BASE\n");
     printf("============================================\n\n");
 
-    /* ============================= */
-    /* TESTS MULTIPLICATION           */
-    /* ============================= */
 
-    printf("===== TESTS MULTIPLICATION =====\n\n");
+    /*
+     * ========================================================
+     * ADDITION
+     * ========================================================
+     *
+     * Vérifie le fonctionnement de l'addition
+     * avec des nombres positifs, négatifs et décimaux.
+     */
+
+    printf("===== TESTS ADDITION =====\n\n");
+
+    printf("5 + 4 = %.2f\n", additionner(5, 4));
+
+    printf("-5 + 4 = %.2f\n", additionner(-5, 4));
+
+    printf("5 + -4 = %.2f\n", additionner(5, -4));
+
+    printf("-5 + -4 = %.2f\n", additionner(-5, -4));
+
+    printf("2.5 + 4 = %.2f\n", additionner(2.5, 4));
+
+    printf("0 + 100 = %.2f\n", additionner(0, 100));
+
+
+    /*
+     * ========================================================
+     * SOUSTRACTION
+     * ========================================================
+     *
+     * Vérifie le fonctionnement de la soustraction
+     * avec différents types de valeurs.
+     */
+
+    printf("\n===== TESTS SOUSTRACTION =====\n\n");
+
+    printf("5 - 4 = %.2f\n", soustraire(5, 4));
+
+    printf("-5 - 4 = %.2f\n", soustraire(-5, 4));
+
+    printf("5 - -4 = %.2f\n", soustraire(5, -4));
+
+    printf("-5 - -4 = %.2f\n", soustraire(-5, -4));
+
+    printf("2.5 - 4 = %.2f\n", soustraire(2.5, 4));
+
+    printf("100 - 100 = %.2f\n", soustraire(100, 100));
+
+
+    /*
+     * ========================================================
+     * MULTIPLICATION
+     * ========================================================
+     */
+
+    printf("\n===== TESTS MULTIPLICATION =====\n\n");
 
     printf("5 * 4 = %.2f\n", multiplier(5, 4));
 
@@ -28,9 +79,16 @@ int main(void)
     printf("0 * 100 = %.2f\n", multiplier(0, 100));
 
 
-    /* ============================= */
-    /* TESTS DIVISION                */
-    /* ============================= */
+    /*
+     * ========================================================
+     * DIVISION
+     * ========================================================
+     *
+     * La fonction diviser() retourne :
+     *
+     *     1 -> division réussie
+     *     0 -> division impossible
+     */
 
     printf("\n===== TESTS DIVISION =====\n\n");
 
@@ -65,9 +123,11 @@ int main(void)
     }
 
 
-    /* ============================= */
-    /* DIVISION PAR ZERO             */
-    /* ============================= */
+    /*
+     * ========================================================
+     * CAS D'ERREUR : DIVISION PAR ZERO
+     * ========================================================
+     */
 
     printf("\n===== CAS D'ERREUR =====\n\n");
 
@@ -79,6 +139,17 @@ int main(void)
     {
         printf("20 / 0 -> ERREUR : division par zero impossible.\n");
     }
+
+
+    /*
+     * ========================================================
+     * FIN DES TESTS
+     * ========================================================
+     */
+
+    printf("\n============================================\n");
+    printf(" FIN DES TESTS OPERATIONS DE BASE\n");
+    printf("============================================\n");
 
     return 0;
 }
