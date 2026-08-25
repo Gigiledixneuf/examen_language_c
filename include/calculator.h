@@ -3,48 +3,30 @@
 
 #include <stdbool.h>
 
-#include "advanced_operations.h"
-
-
 typedef struct
 {
     double result;
-    double firstValue;
-    double secondValue;
-
     bool isInitialExecution;
-
     int currentOperator;
+
 } CalculatorContext;
 
 
-/*
- * Flux de base
- */
+/* Flux principaux */
+
 void baseFlow(void);
 
-
-/*
- * Flux de calculs
- */
 void calculationFlow(
     CalculatorContext *context
 );
 
 
-/*
- * Flux d'enchaînement avec
- * le même opérateur.
- */
+/* Flux d'enchaînement */
+
 void sameOperatorFlow(
     CalculatorContext *context
 );
 
-
-/*
- * Flux d'enchaînement avec
- * un opérateur différent.
- */
 void differentOperatorFlow(
     CalculatorContext *context
 );

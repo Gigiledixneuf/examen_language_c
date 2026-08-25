@@ -13,7 +13,7 @@
 #define HIGHLIGHT "\033[7m" // Reverse video (highlight)
 #define RESET "\033[0m"     // Reset attributes
 
-#define MAX_OPERATION  15
+#define MAX_OPERATION  16
 #define MIN_OPERATION  1
 #define KEY_UP 80
 #define KEY_DOWN 72
@@ -95,16 +95,21 @@ printf("Racine carre \n");
 
 printArrow(15,actualPosition);
 printf("Racine nieme \n");
+
+printArrow(15, actualPosition);
+printf("Racine nieme \n");
+
+printArrow(16, actualPosition);
+printf("Changement de base \n");
 }
 
 
 int getOperatorChoice(void)
 {
     int position = 1;
-    int keyPressed = 0;
+    int keyPressed;
 
-    while (keyPressed != KEY_ENTER &&
-           keyPressed != KEY_ESC)
+    while (true)
     {
         system("cls");
 
@@ -112,20 +117,22 @@ int getOperatorChoice(void)
 
         keyPressed = getch();
 
+        if (keyPressed == KEY_ENTER)
+        {
+            return position;
+        }
+
+        if (keyPressed == KEY_ESC)
+        {
+            return 0;
+        }
+
         position = getNewArrowPosition(
             position,
             keyPressed
         );
     }
-
-    if (keyPressed == KEY_ESC)
-    {
-        return 0;
-    }
-
-    return position;
 }
-
 
 
 
@@ -141,91 +148,60 @@ if(k == 27){
 
 
 //prend en parametre la position de l'operateur choisi par l'utilisateur et renvoi la structure associé à cette operateur.
-Operator defineOperator(int position){
-    Operator o;
-    bool isBasic=true;
-    bool isTrigo=false;
-    bool isUnary=false;
-    int operatorPosition;
-    switch (position)
+Operator defineOperator(int p)
 {
-case 1: 
-    operatorPosition = 1;
-    break;
-case 2: 
-     operatorPosition = 2;
-    break;
-case 3: 
-     operatorPosition = 3;
-    break;
-case 4:
-     operatorPosition = 4;
-    break;
-case 5: 
-    isBasic=false;
-    isUnary=true;
-    isTrigo=true;
-     operatorPosition = 5;
-    break;
-case 6: 
-    isBasic=false;
-    isUnary=true;
-    isTrigo=true;
-     operatorPosition = 6;
-    break;
-case 7: 
-    isBasic=false;
-    isUnary=true;
-    isTrigo=true;
-     operatorPosition = 7;
-    break;
-case 8: 
-    isBasic=false;
-    isUnary=true;
-     operatorPosition = 8;
-    break;
-case 9: 
-    isBasic=false;
-    isUnary=true;
-     operatorPosition = 9;
-    break;
-case 10: 
-    isBasic=false;
-    isUnary=true;
-     operatorPosition = 10;
-    break;
-case 11: 
-    isBasic=false;
-     operatorPosition = 11;
-    break;
-case 12: 
-    isBasic=false;
-     operatorPosition = 12;
-    break;
-case 13: 
-    isBasic=false;
-    isUnary=true;
-     operatorPosition = 13;
-    break;
-case 14: 
-    isBasic=false;
-    isUnary=true;
-     operatorPosition = 14;
-    break;
-case 15: 
-    isBasic=false;
-     operatorPosition = 15;
-    break;
-default:
-    break;
-}  
+    Operator o;
 
- o.position=operatorPosition;
- o.isBasic=isBasic;
- o.isTrigo=isTrigo;
- o.isUnary=isUnary;
+    o.isBasic = true;
+    o.isTrigo = false;
+    o.isUnary = false;
+    o.position = p;
 
- return o;
+    switch (p)
+    {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            break;
+
+        case 5:
+        case 6:
+        case 7:
+
+            o.isBasic = false;
+            o.isUnary = true;
+            o.isTrigo = true;
+
+            break;
+
+        case 8:
+        case 9:
+        case 10:
+        case 13:
+        case 14:
+
+            o.isBasic = false;
+            o.isUnary = true;
+
+            break;
+
+        case 11:
+        case 12:
+        case 15:
+        case 16:
+
+            o.isBasic = false;
+
+            break;
+
+        default:
+
+            o.isBasic = false;
+            break;
+    }
+
+    return o;
 }
 
 // //une fonction qui prend en parametre la structure et un booleen indiquant si c'est la premiere exécution ou pas choisi par l'utilisateur et effectue le flux des calculs

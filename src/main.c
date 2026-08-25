@@ -4,6 +4,7 @@
 #include "../include/interface.h"
 
 
+
 int main(void)
 {
     showTitle();
@@ -14,7 +15,6 @@ int main(void)
 
     return 0;
 }
-
 
 //amos & jonathan & juliette k
 //implementation des l'historiques des calculs

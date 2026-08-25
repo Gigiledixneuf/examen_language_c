@@ -1,10 +1,7 @@
-// void handleUserKeywordInput();
-// void showTitle();
-
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-#include "../include/calculator.h"
+#include <stdbool.h>
 
 typedef struct
 {
@@ -14,9 +11,13 @@ typedef struct
     int position;
 } Operator;
 
+
 void showTitle(void);
+
+void showOperationsMenu(int actualPosition);
+
+Operator defineOperator(int position);
 
 int getOperatorChoice(void);
 
-Operator defineOperator(int p);
 #endif

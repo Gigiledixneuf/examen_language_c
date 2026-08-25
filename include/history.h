@@ -1,12 +1,11 @@
 #ifndef HISTORY_H
 #define HISTORY_H
 
-#include <stdbool.h>
+void saveHistory(
+    const char *expression,
+    double result
+);
 
-#define HISTORY_FILE "data/history.txt"
-
-bool saveHistory(const char *expression);
-
-void showHistory(void);
+void displayHistory(void);
 
 #endif
