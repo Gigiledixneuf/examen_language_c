@@ -3,14 +3,18 @@
 
 #include <stdbool.h>
 
-bool isValidBase(int base);
-
-bool convertBase(
+/*
+ * Convertit une valeur représentée sous forme de chaîne
+ * d'une base vers une autre.
+ *
+ * Bases supportées : 2, 8, 10, 16
+ */
+bool convert_base(
     const char *value,
-    int initialBase,
-    int targetBase,
+    int source_base,
+    int target_base,
     char *result,
-    int resultSize
+    int result_size
 );
 
 #endif

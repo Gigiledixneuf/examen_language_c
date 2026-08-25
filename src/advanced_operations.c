@@ -159,3 +159,145 @@ bool calculate_sqrt(
 
     return true;
 }
+
+
+bool calculate_power(
+    double base,
+    double exponent,
+    double *result
+)
+{
+    if (result == NULL)
+    {
+        return false;
+    }
+
+    *result = pow(base, exponent);
+
+    return true;
+}
+
+
+bool calculate_factorial(
+    double value,
+    double *result
+)
+{
+    if (result == NULL)
+    {
+        return false;
+    }
+
+    /*
+     * La factorielle est définie ici uniquement
+     * pour les entiers naturels.
+     */
+    if (value < 0.0 || floor(value) != value)
+    {
+        return false;
+    }
+
+    /*
+     * Protection contre un résultat trop grand
+     * pour un double.
+     */
+    if (value > 170.0)
+    {
+        return false;
+    }
+
+    double factorial = 1.0;
+
+    for (int i = 2; i <= (int)value; i++)
+    {
+        factorial *= i;
+    }
+
+    *result = factorial;
+
+    return true;
+}
+
+
+bool calculate_log_base(
+    double value,
+    double base,
+    double *result
+)
+{
+    if (result == NULL)
+    {
+        return false;
+    }
+
+    /*
+     * Conditions :
+     *
+     * value > 0
+     * base > 0
+     * base != 1
+     */
+    if (value <= 0.0 || base <= 0.0 || base == 1.0)
+    {
+        return false;
+    }
+
+    *result = log(value) / log(base);
+
+    return true;
+}
+
+
+bool calculate_nth_root(
+    double value,
+    double n,
+    double *result
+)
+{
+    if (result == NULL)
+    {
+        return false;
+    }
+
+    /*
+     * n doit être strictement positif.
+     */
+    if (n <= 0.0)
+    {
+        return false;
+    }
+
+    /*
+     * Pour une racine paire, une valeur négative
+     * n'a pas de résultat réel.
+     */
+    if (value < 0.0 && fmod(n, 2.0) == 0.0)
+    {
+        return false;
+    }
+
+    /*
+     * Cas particulier : racine n-ième de 0.
+     */
+    if (value == 0.0)
+    {
+        *result = 0.0;
+        return true;
+    }
+
+    /*
+     * Pour une valeur négative et n impair :
+     *
+     * racine_n(-a) = -racine_n(a)
+     */
+    if (value < 0.0)
+    {
+        *result = -pow(-value, 1.0 / n);
+    }
+    else
+    {
+        *result = pow(value, 1.0 / n);
+    }
+
+    return true;
+}

@@ -332,11 +332,83 @@ void test_sqrt_negative(void)
     printf("[PASS] sqrt(-1) - valeur invalide\n");
 }
 
+
 void test_sqrt_null_result(void)
 {
     assert(!calculate_sqrt(25.0, NULL));
 
     printf("[PASS] sqrt - protection NULL\n");
+}
+
+
+
+void test_power(void)
+{
+    double result;
+
+    assert(calculate_power(2.0, 3.0, &result));
+    assert(nearlyEqual(result, 8.0));
+
+    printf("[PASS] power(2, 3)\n");
+}
+
+
+void test_factorial(void)
+{
+    double result;
+
+    assert(calculate_factorial(5.0, &result));
+    assert(nearlyEqual(result, 120.0));
+
+    assert(calculate_factorial(0.0, &result));
+    assert(nearlyEqual(result, 1.0));
+
+    printf("[PASS] factorial()\n");
+}
+
+
+void test_log_base(void)
+{
+    double result;
+
+    assert(calculate_log_base(8.0, 2.0, &result));
+    assert(nearlyEqual(result, 3.0));
+
+    printf("[PASS] log_base(8, 2)\n");
+}
+
+
+void test_nth_root(void)
+{
+    double result;
+
+    assert(calculate_nth_root(8.0, 3.0, &result));
+    assert(nearlyEqual(result, 2.0));
+
+    assert(calculate_nth_root(-8.0, 3.0, &result));
+    assert(nearlyEqual(result, -2.0));
+
+    printf("[PASS] nth_root()\n");
+}
+
+
+void test_advanced_edge_cases(void)
+{
+    double result;
+
+    /* Factorielle */
+    assert(!calculate_factorial(-1.0, &result));
+    assert(!calculate_factorial(2.5, &result));
+
+    /* Logarithme */
+    assert(!calculate_log_base(10.0, 1.0, &result));
+    assert(!calculate_log_base(-10.0, 2.0, &result));
+
+    /* Racine */
+    assert(!calculate_nth_root(-16.0, 2.0, &result));
+    assert(!calculate_nth_root(8.0, 0.0, &result));
+
+    printf("[PASS] cas particuliers advanced_operations\n");
 }
 
 int main(void)
@@ -367,6 +439,18 @@ test_ln_invalid();
 
 test_logarithm_null_result();
 
+test_exp();
+test_exp_negative();
+test_exp_null_result();
+test_sqrt();
+test_sqrt_zero();
+test_sqrt_negative();
+test_sqrt_null_result();
+test_power();
+test_factorial();
+test_log_base();
+test_nth_root();
+test_advanced_edge_cases();
     printf("\n=== TOUS LES TESTS SONT PASSES ===\n");
 
 

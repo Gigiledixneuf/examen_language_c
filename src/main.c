@@ -1,7 +1,6 @@
-#include "../include/interface.h"
 #include <stdio.h>
 #include <windows.h>
-
+#include "../include/base_conversion.h"
 
 
 
@@ -12,9 +11,24 @@
 
 int main()
 {
-    showTitle();
-    Sleep(2500);
-    handleUserKeywordInput();
+    char result[100];
+
+    if (convert_base(
+        "FF",
+        16,
+        2,
+        result,
+        sizeof(result)
+    ))
+    {
+        printf("Resultat : %s\n", result);
+    }
+    else
+    {
+        printf("Erreur de conversion\n");
+    }
+
+    
     return 0;
 }
 
