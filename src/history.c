@@ -5,6 +5,21 @@
 #define HISTORY_FILE "data/history.txt"
 
 
+void saveTextHistory(const char *expression)
+{
+    FILE *file = fopen(HISTORY_FILE, "a");
+
+    if (file == NULL)
+    {
+        printf("Erreur : impossible d'ouvrir l'historique.\n");
+        return;
+    }
+
+    fprintf(file, "%s\n", expression);
+
+    fclose(file);
+}
+
 void saveHistory(
     const char *expression,
     double result

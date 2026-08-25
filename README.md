@@ -4,17 +4,12 @@ Cette calculatrice scientifique offre aux utilisateur la possibilité d'effectue
 
 
  ## Guide d'installation
- - installation du compilateur gcc
+ - installation du compilateur gcc et make via msys avec ajout au path
+ - installer git
  - cloner le repo
- - installer make
  ### compiler le programme
 
- #### sans make:
 
- ```
-  gcc -Wall -I ./include ./src/main.c  ./src/interface.c ./src/basic_operations.c  -o ./bin/main
-
-#### avec make
 
 ```
 ## Structures des dossiers

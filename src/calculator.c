@@ -528,9 +528,13 @@ static bool executeNthRoot(
     double n;
     double result;
 
-    printf("Entrez la valeur : ");
-    scanf("%lf", &value);
 
+    if(context->isInitialExecution){
+        printf("Entrez la valeur : ");
+    scanf("%lf", &value);
+    }else{
+        value=context->result;
+    }
     printf("Entrez l'indice n : ");
     scanf("%lf", &n);
 
@@ -564,36 +568,56 @@ static bool executeBaseConversion(
     CalculatorContext *context
 )
 {
-    char value[128];
-    char result[128];
+    char value[64];
+char convertedValue[64];
+char expression[256];
 
-    int sourceBase;
-    int targetBase;
+int sourceBase;
+int targetBase;
 
-    printf("Entrez la valeur : ");
-    scanf("%127s", value);
+printf("Valeur : ");
+scanf("%63s", value);
 
-    printf("Base initiale (2, 8, 10, 16) : ");
-    scanf("%d", &sourceBase);
+printf("Base initiale (2,16,8,10): ");
+scanf("%d", &sourceBase);
 
-    printf("Base cible (2, 8, 10, 16) : ");
-    scanf("%d", &targetBase);
+printf("Base cible : ");
+scanf("%d", &targetBase);
 
-    if (!convert_base(
+if (convert_base(
         value,
         sourceBase,
         targetBase,
-        result,
-        sizeof(result)
-    ))
-    {
-        printf("Erreur : conversion impossible.\n");
-        return false;
-    }
+        convertedValue,
+        sizeof(convertedValue)))
+{
+    printf("\nResultat : %s\n", convertedValue);
+
+    snprintf(
+        expression,
+        sizeof(expression),
+        "%s (base %d) -> %s (base %d)",
+        value,
+        sourceBase,
+        convertedValue,
+        targetBase
+    );
+
+    saveTextHistory(expression);
+
+    printf("\nAppuyez sur une touche pour continuer...");
+    getch();
+}
+else
+{
+    printf("\nErreur : conversion impossible.\n");
+    printf("\nAppuyez sur une touche pour continuer...");
+    getch();
+}
 
     printf(
         "\nResultat : %s\n",
-        result
+        convertedValue
     );
 
     /*
@@ -635,8 +659,7 @@ void sameOperatorFlow(
 
     memset(expression, 0, sizeof(expression));
 
-    Operator operator =
-        defineOperator(context->currentOperator);
+    Operator operator = defineOperator(context->currentOperator);
 
     bool success = false;
 
