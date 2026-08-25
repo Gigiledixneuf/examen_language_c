@@ -3,77 +3,50 @@
 
 #include <stdbool.h>
 
-#define MAX_RESULT_LENGTH 128
-
-typedef enum
-{
-    OP_ADD = 1,
-    OP_SUBTRACT,
-    OP_MULTIPLY,
-    OP_DIVIDE,
-
-    OP_SIN,
-    OP_COS,
-    OP_TAN,
-
-    OP_EXP,
-    OP_LOG10,
-    OP_LN,
-    OP_LOG_BASE,
-
-    OP_POWER,
-    OP_FACTORIAL,
-    OP_SQRT,
-    OP_NTH_ROOT,
-
-    OP_BASE_CONVERSION
-
-} OperatorType;
+#include "advanced_operations.h"
 
 
 typedef struct
 {
-    OperatorType type;
-
-    bool isBasic;
-    bool isTrigo;
-    bool isUnary;
-
-} Operator;
-
-
-/*
- * Etat conservé pendant l'exécution
- * d'un calcul.
- */
-typedef struct
-{
-    double numericResult;
-
-    char textualResult[MAX_RESULT_LENGTH];
-
-    bool hasNumericResult;
-    bool hasTextualResult;
+    double result;
+    double firstValue;
+    double secondValue;
 
     bool isInitialExecution;
 
-    Operator currentOperator;
-
-} CalculatorState;
+    int currentOperator;
+} CalculatorContext;
 
 
 /*
- * Flux principaux
+ * Flux de base
  */
+void baseFlow(void);
 
-void executeBaseFlow(void);
 
-void executeCalculationFlow(CalculatorState *state);
+/*
+ * Flux de calculs
+ */
+void calculationFlow(
+    CalculatorContext *context
+);
 
-void executeSameOperatorFlow(CalculatorState *state);
 
-void executeDifferentOperatorFlow(CalculatorState *state);
+/*
+ * Flux d'enchaînement avec
+ * le même opérateur.
+ */
+void sameOperatorFlow(
+    CalculatorContext *context
+);
 
-void executeBaseConversionFlow(CalculatorState *state);
+
+/*
+ * Flux d'enchaînement avec
+ * un opérateur différent.
+ */
+void differentOperatorFlow(
+    CalculatorContext *context
+);
 
 #endif

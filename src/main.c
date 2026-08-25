@@ -1,36 +1,20 @@
 #include <stdio.h>
 #include <windows.h>
-#include "../include/base_conversion.h"
+#include "../include/calculator.h"
+#include "../include/interface.h"
 
 
-
-
-
-
-
-
-int main()
+int main(void)
 {
-    char result[100];
+    showTitle();
 
-    if (convert_base(
-        "FF",
-        16,
-        2,
-        result,
-        sizeof(result)
-    ))
-    {
-        printf("Resultat : %s\n", result);
-    }
-    else
-    {
-        printf("Erreur de conversion\n");
-    }
+    Sleep(2500);
 
-    
+    baseFlow();
+
     return 0;
 }
+
 
 //amos & jonathan & juliette k
 //implementation des l'historiques des calculs
