@@ -1,7 +1,5 @@
 #include "../include/basic_operations.h"
 #include <stddef.h>
-//guerchom  & benel & isaac: module: basic operations
-//implementer les fonctions ici
 
 //addition: prend en parametre deux nombre et les additionne
 double additionner(double a, double b)
@@ -16,61 +14,13 @@ double soustraire(double a, double b)
 }
 
 //multipication: prend en parametre deux nombre et les multiplie
-/*
- * ------------------------------------------------------------
- * MULTIPLICATION
- * ------------------------------------------------------------
- *
- * Multiplie deux nombres a et b.
- *
- * Exemple :
- *
- *     a = 5
- *     b = 4
- *
- *     résultat = 20
- *
- * La fonction retourne directement le résultat du calcul.
- */
 double multiplier(double a, double b)
 {
     return a * b;
 }
 
 
-/*
- * ------------------------------------------------------------
- * DIVISION
- * ------------------------------------------------------------
- *
- * Divise le nombre a par le nombre b.
- *
- * Le résultat est placé dans la variable pointée par
- * le paramètre resultat.
- *
- * La fonction vérifie deux conditions :
- *
- * 1. Le diviseur b ne doit pas être égal à zéro.
- * 2. L'adresse resultat doit être valide.
- *
- * Retour :
- *
- *     1 -> division réussie
- *     0 -> erreur
- *
- * Exemple :
- *
- *     double resultat;
- *
- *     if (diviser(20, 4, &resultat))
- *     {
- *         printf("%.2f", resultat);
- *     }
- *
- * Résultat :
- *
- *     5.00
- */
+//la division: prend en parametre deux nombre et les divise
 int diviser(double a, double b, double *resultat)
 {
     /*

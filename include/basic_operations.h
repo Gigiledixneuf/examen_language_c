@@ -7,19 +7,7 @@
  * MODULE : OPERATIONS DE BASE
  * ============================================================
  *
- * Ce module contient les opérations arithmétiques de base
- * utilisées par la calculatrice scientifique.
- *
- * Répartition du travail :
- *
- * - Addition       : Benel / Isaac
- * - Soustraction   : Benel / Isaac
- * - Multiplication : Guerchom
- * - Division       : Guerchom
- *
- * Les fonctions d'addition et de soustraction sont déclarées
- * ici afin de permettre l'intégration future de tous les membres
- * du groupe dans le même module.
+ * Ce module contient les opérations arithmétiques de base utilisées par la calculatrice scientifique.
  */
 
 
@@ -31,9 +19,6 @@
  * Additionne deux nombres.
  *
  * double addition(double a, double b);
-
-Cette fonction est réservée à l'implémentation de Benel
- * et Isaac.
  */
 double additionner(double a, double b);
 
@@ -44,9 +29,6 @@ double additionner(double a, double b);
  * ------------------------------------------------------------
  *
  * Soustrait b de a.
- *
- * Cette fonction est réservée à l'implémentation de Benel
- * et Isaac.
  */
 double soustraire(double a, double b);
 
@@ -57,14 +39,6 @@ double soustraire(double a, double b);
  * ------------------------------------------------------------
  *
  * Multiplie a par b.
- *
- * Exemple :
- *
- *     multiplier(5, 4)
- *
- * retourne :
- *
- *     20
  */
 double multiplier(double a, double b);
 
