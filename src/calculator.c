@@ -260,8 +260,12 @@ static bool executeUnaryOperation(
         case 6:
         case 7:
         {
-            int unit;
+            AngleUnit angleUnit;
 
+            if(context->isChainingWithSame){
+                angleUnit=context->lastAngleUnit;
+            }else{
+                int unit;
             printf("\nUnite de l'angle :\n");
             printf("1. Degres\n");
             printf("2. Radians\n");
@@ -284,6 +288,9 @@ static bool executeUnaryOperation(
                 printf("Unite invalide.\n");
                 return false;
             }
+            context->lastAngleUnit=angleUnit;
+            }
+            
 
             if (operator == 5)
             {
@@ -330,7 +337,7 @@ static bool executeUnaryOperation(
 
             break;
         }
-
+//unaire sans parametre
         case 8:
 
             success = calculate_exp(
@@ -441,9 +448,15 @@ static bool executePower(
         base=context->result;
     }
     
-
-    printf("Entrez l'exposant : ");
+    if (context->isChainingWithSame){
+        exponent=context->lastExponent;
+    }else{
+         printf("Entrez l'exposant : ");
     scanf("%lf", &exponent);
+
+    context->lastExponent=exponent;
+    }
+
 
     if (!calculate_power(
         base,
@@ -490,8 +503,16 @@ static bool executeLogBase(
     }else{
         value=context->result;
     }
-    printf("Entrez la base : ");
+
+    if (context->isChainingWithSame)
+    {
+        base=context->lastBase;
+    }else{
+        printf("Entrez la base : ");
     scanf("%lf", &base);
+    context->lastBase=base;
+    }
+    
 
     if (!calculate_log_base(
         value,
@@ -535,8 +556,15 @@ static bool executeNthRoot(
     }else{
         value=context->result;
     }
-    printf("Entrez l'indice n : ");
+
+    if(context->isChainingWithSame){
+        n=context->lastRootIndex;
+    }else{
+            printf("Entrez l'indice n : ");
     scanf("%lf", &n);
+
+    context->lastRootIndex=n;
+    }
 
     if (!calculate_nth_root(
         value,
@@ -654,6 +682,9 @@ void sameOperatorFlow(
 )
 {
     context->isInitialExecution = false;
+    context->isChainingWithSame=true;
+
+
 
     char expression[256];
 
@@ -662,8 +693,12 @@ void sameOperatorFlow(
     Operator operator = defineOperator(context->currentOperator);
 
     bool success = false;
-
-    if (operator.isBasic)
+    if (operator.isUnary){
+        success=executeUnaryOperation(context->currentOperator,context,expression);
+    }
+    
+    
+    else if (operator.isBasic)
     {
         success = executeBasicOperation(
             context->currentOperator,
@@ -676,12 +711,25 @@ void sameOperatorFlow(
         /*
          * Le flux 3 concerne l'enchaînement
          * avec le même opérateur.
-         *
-         * Pour les opérations nécessitant plusieurs
-         * paramètres, on repasse par le flux de calculs.
          */
-        calculationFlow(context);
+        switch (context->currentOperator)
+        {
+        case 11:
+            executeLogBase(context,expression);
+            break;
+        case 12:
+            executePower(context,expression);
+        break;
+        case 15:
+        executeNthRoot(context,expression);
+        break;
+        case 16:
+        executeBaseConversion(context);
+
         return;
+        default:
+            return;
+        }
     }
 
     if (!success)
@@ -725,6 +773,8 @@ void differentOperatorFlow(
 )
 {
     context->isInitialExecution = false;
+    context->isChainingWithSame=false;
+
 
     calculationFlow(context);
 }
@@ -745,6 +795,7 @@ void calculationFlow(
     Operator operator;
 
     int choice;
+    context->isChainingWithSame=false;
 
     choice = getOperatorChoice();
 
@@ -881,6 +932,7 @@ void calculationFlow(
         context->result
     );
 
+context->isInitialExecution=false;
 
     /* -----------------------------------------------------
      * ECOUTE CLAVIER
@@ -942,6 +994,11 @@ void baseFlow(void)
                 context.result = 0.0;
                 context.isInitialExecution = true;
                 context.currentOperator = 0;
+                context.isChainingWithSame=false;
+                context.lastBase=0.0;
+                context.lastExponent=0.0;
+                context.lastRootIndex=0.0;
+                context.lastAngleUnit=ANGLE_DEGREES;
 
                 calculationFlow(&context);
 
