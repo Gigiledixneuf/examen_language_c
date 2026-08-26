@@ -126,7 +126,7 @@ https://github.com/Gigiledixneuf/examen_language_c
 | Daniella | [à compléter] |
 | Jonathan | [à compléter] |
 | Juliette | [à compléter] |
-| Guershom | [à compléter] |
+| Guerchom | Gigiledixneuf |
 | Sebastien | [à compléter] |
 | Benel | [à compléter] |
 | Geraldine | [à compléter] |
